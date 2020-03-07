@@ -1,0 +1,32 @@
+.app {
+  display: flex;
+  justify-content: center;
+
+  height: 100%;
+
+  .editor-container {
+    position: relative;
+    display: flex;
+
+    margin: 5% auto;
+    width: 60%;
+    min-height: 40%;
+
+    background-color: #fff;
+    border-radius: 10px;
+
+    align-self: flex-start;
+
+    padding: 80px 16px 16px;
+
+    overflow-x: hidden;
+
+    box-shadow: 0px 0px 16px -8px rgba(black, 0.72),
+      0px 4px 8px -4px rgba(black, 0.32);
+
+    .editor {
+      flex: 1;
+      align-self: stretch;
+    }
+  }
+}
