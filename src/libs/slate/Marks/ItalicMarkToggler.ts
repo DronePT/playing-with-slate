@@ -1,11 +1,14 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
-import { EditorKeyDownEvent } from "../EditorKeyDownEvent";
+import { KeyDownStrategy } from "../KeyDownStrategy";
 
-export class ItalicMarkToggler implements EditorKeyDownEvent {
+export class ItalicMarkToggler implements KeyDownStrategy {
   private _editor: ReactEditor;
+  public strategyName: string;
+
   constructor(editor: ReactEditor) {
     this._editor = editor;
+    this.strategyName = 'italic';
   }
   private toggleItalicMark() {
     const isActive = this.isItalicMarkActive();

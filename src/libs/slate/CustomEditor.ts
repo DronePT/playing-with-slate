@@ -1,21 +1,30 @@
 import { ReactEditor } from 'slate-react';
-import { EditorKeyDownToggler } from './EditorKeyDownToggler';
+import { KeyDownStrategyManager } from './KeyDownStrategyManager';
 
 class CustomEditor {
-  private _editor: ReactEditor;
+  private keyDownStrategyManager: KeyDownStrategyManager;
 
   constructor(editor: ReactEditor) {
-    this._editor = editor
+    this.keyDownStrategyManager = new KeyDownStrategyManager(editor, new Map([
+      ['meta+\\', 'code'],
+      ['meta+b', 'bold'],
+      ['meta+i', 'italic'],
+      ['meta+u', 'underline'],
+    ]))
   }
 
   handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>): void {
-    if (!event.metaKey) {
-      return
+    const keyName = [event.key];
+
+    if (event.metaKey) {
+      keyName.unshift('meta')
     }
 
-    const toggler = EditorKeyDownToggler.getToggler(event.key, this._editor);
+    const keyDownStrategy = this.keyDownStrategyManager.getStrategy(keyName.join('+'));
 
-    toggler?.toggle()
+    keyDownStrategy?.toggle()
+
+    console.log('keyName', keyName)
   }
 }
 
