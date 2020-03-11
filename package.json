@@ -12,6 +12,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/slate": "^0.47.5",
     "@types/slate-react": "^0.22.9",
+    "clsx": "^1.1.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
