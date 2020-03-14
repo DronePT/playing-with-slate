@@ -1,5 +1,5 @@
 import { ReactEditor } from 'slate-react';
-import { KeyDownStrategy } from "./KeyDownStrategy";
+import { KeyDownStrategy } from './KeyDownStrategy';
 
 import { BoldMarkToggler } from './Marks/BoldMarkToggler';
 import { CodeBlockElement } from './Elements/CodeBlockElement';
@@ -12,29 +12,31 @@ export class KeyDownStrategyManager {
   private keysMapping: Map<string, string>;
 
   constructor(editor: ReactEditor, keysMapping: Map<string, string>) {
-    this.keysMapping = keysMapping
+    this.keysMapping = keysMapping;
 
     this.stratagies = [
       new CodeBlockElement(editor),
       new BoldMarkToggler(editor),
       new ItalicMarkToggler(editor),
-      new UnderlineMarkToggler(editor),
-    ]
+      new UnderlineMarkToggler(editor)
+    ];
 
     this._buildStrategyMap();
   }
 
-  private _buildStrategyMap() {
-    this.stratagies.forEach(strategy => this.stratagiesMap.set(strategy.strategyName, strategy))
+  private _buildStrategyMap(): void {
+    this.stratagies.forEach(strategy =>
+      this.stratagiesMap.set(strategy.strategyName, strategy)
+    );
   }
 
-  addStrategy(strategy: KeyDownStrategy) {
+  addStrategy(strategy: KeyDownStrategy): void {
     this.stratagies.push(strategy);
 
-    this.stratagiesMap.set(strategy.strategyName, strategy)
+    this.stratagiesMap.set(strategy.strategyName, strategy);
   }
 
   getStrategy(keyName: string): KeyDownStrategy | undefined {
-    return this.stratagiesMap.get(this.keysMapping.get(keyName) || '')
+    return this.stratagiesMap.get(this.keysMapping.get(keyName) || '');
   }
 }

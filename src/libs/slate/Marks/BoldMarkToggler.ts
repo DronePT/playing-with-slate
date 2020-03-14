@@ -1,6 +1,6 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
-import { KeyDownStrategy } from "../KeyDownStrategy";
+import { KeyDownStrategy } from '../KeyDownStrategy';
 
 export class BoldMarkToggler implements KeyDownStrategy {
   private _editor: ReactEditor;
@@ -10,20 +10,23 @@ export class BoldMarkToggler implements KeyDownStrategy {
     this._editor = editor;
     this.strategyName = 'bold';
   }
-  private toggleBoldMark() {
+  private toggleBoldMark(): void {
     const isActive = this.isBoldMarkActive();
-    Transforms.setNodes(this._editor, { bold: isActive ? null : true }, { match: n => Text.isText(n), split: true });
+    Transforms.setNodes(
+      this._editor,
+      { bold: isActive ? null : true },
+      { match: n => Text.isText(n), split: true }
+    );
   }
-  private isBoldMarkActive() {
+  private isBoldMarkActive(): boolean {
     const [match] = Editor.nodes(this._editor, {
       match: n => n.bold === true,
-      universal: true,
+      universal: true
     });
     return !!match;
   }
-  toggle() {
+
+  toggle(): void {
     this.toggleBoldMark();
   }
 }
-
-

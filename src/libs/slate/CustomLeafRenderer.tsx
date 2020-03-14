@@ -1,16 +1,16 @@
-import React, { useCallback } from "react";
-import { RenderLeafProps } from "slate-react";
-import clsx from "clsx";
+import React, { useCallback } from 'react';
+import { RenderLeafProps } from 'slate-react';
+import clsx from 'clsx';
 
-import "./Leaf.scss";
+import './Leaf.scss';
 
 const Leaf: React.FC<RenderLeafProps> = props => {
   const { bold, italic, underline } = props.leaf;
 
   const className = clsx({
-    "is-bold": bold,
-    "is-italic": italic,
-    "is-underline": underline
+    'is-bold': bold,
+    'is-italic': italic,
+    'is-underline': underline
   });
 
   return (
@@ -20,7 +20,9 @@ const Leaf: React.FC<RenderLeafProps> = props => {
   );
 };
 
-const CustomLeafRenderer = () => {
+type CustomLeafRender = (props: RenderLeafProps) => JSX.Element;
+
+const CustomLeafRenderer = (): CustomLeafRender => {
   return useCallback(props => {
     return <Leaf {...props} />;
   }, []);
