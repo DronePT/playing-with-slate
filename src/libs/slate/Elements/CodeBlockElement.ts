@@ -1,15 +1,9 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Editor } from 'slate';
 import { KeyDownStrategy } from '../KeyDownStrategy';
-export class CodeBlockElement implements KeyDownStrategy {
-  private _editor: ReactEditor;
-
-  public strategyName: string;
-
+export class CodeBlockElement extends KeyDownStrategy {
   constructor(editor: ReactEditor) {
-    this._editor = editor;
-
-    this.strategyName = 'code';
+    super('code', editor);
   }
 
   public get isActive(): boolean {
