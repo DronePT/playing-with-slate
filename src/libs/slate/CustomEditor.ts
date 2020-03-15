@@ -19,6 +19,14 @@ class CustomEditor {
     keyDownStrategy?.toggle();
   }
 
+  sendKeyPress(keyCombination: string): void {
+    const keyDownStrategy = this.keyDownStrategyManager.getStrategy(
+      keyCombination
+    );
+
+    keyDownStrategy?.toggle();
+  }
+
   handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>): void {
     const { key, metaKey } = event;
 
