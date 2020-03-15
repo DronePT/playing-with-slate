@@ -7,6 +7,7 @@ class CustomEditor {
   constructor(editor: ReactEditor) {
     this.keyDownStrategyManager = new KeyDownStrategyManager(
       editor,
+      // eslint-disable-next-line no-undef
       new Map([
         ['meta+\\', 'code'],
         ['meta+b', 'bold'],
@@ -14,22 +15,28 @@ class CustomEditor {
         ['meta+u', 'underline']
       ])
     );
+
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
-  handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>): void {
-    const keyName = [event.key];
-
-    if (event.metaKey) {
-      keyName.unshift('meta');
-    }
-
+  sendKeyPress(keyCombination: string): void {
     const keyDownStrategy = this.keyDownStrategyManager.getStrategy(
-      keyName.join('+')
+      keyCombination
     );
 
     keyDownStrategy?.toggle();
+  }
 
-    console.log('keyName', keyName);
+  handleKeyDown(event: React.KeyboardEvent<HTMLDivElement>): void {
+    const { key, metaKey } = event;
+
+    const keyName = [key];
+
+    if (metaKey) {
+      keyName.unshift('meta');
+    }
+
+    this.sendKeyPress(keyName.join('+'));
   }
 }
 

@@ -10,6 +10,11 @@ export class BoldMarkToggler implements KeyDownStrategy {
     this._editor = editor;
     this.strategyName = 'bold';
   }
+
+  public get isActive(): boolean {
+    return this.isBoldMarkActive();
+  }
+
   private toggleBoldMark(): void {
     const isActive = this.isBoldMarkActive();
     Transforms.setNodes(
@@ -18,6 +23,7 @@ export class BoldMarkToggler implements KeyDownStrategy {
       { match: n => Text.isText(n), split: true }
     );
   }
+
   private isBoldMarkActive(): boolean {
     const [match] = Editor.nodes(this._editor, {
       match: n => n.bold === true,

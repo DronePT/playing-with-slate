@@ -12,6 +12,10 @@ export class CodeBlockElement implements KeyDownStrategy {
     this.strategyName = 'code';
   }
 
+  public get isActive(): boolean {
+    return this.isCodeBlockActive();
+  }
+
   private toggleCodeBlock(): void {
     const isActive = this.isCodeBlockActive();
     Transforms.setNodes(

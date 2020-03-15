@@ -8,6 +8,7 @@ import { UnderlineMarkToggler } from './Marks/UnderlineMarkToggler';
 
 export class KeyDownStrategyManager {
   private stratagies: KeyDownStrategy[] = [];
+  // eslint-disable-next-line no-undef
   private stratagiesMap: Map<string, KeyDownStrategy> = new Map();
   private keysMapping: Map<string, string>;
 

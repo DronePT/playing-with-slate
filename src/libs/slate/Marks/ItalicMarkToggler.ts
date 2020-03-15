@@ -11,6 +11,10 @@ export class ItalicMarkToggler implements KeyDownStrategy {
     this.strategyName = 'italic';
   }
 
+  public get isActive(): boolean {
+    return this.isItalicMarkActive();
+  }
+
   private toggleItalicMark(): void {
     const isActive = this.isItalicMarkActive();
     Transforms.setNodes(
