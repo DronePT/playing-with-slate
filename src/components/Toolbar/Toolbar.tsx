@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Bold as BoldIcon,
   Italic as ItalicIcon,
@@ -12,12 +12,14 @@ import './Toolbar.scss';
 import CustomEditor from '../../libs/slate/CustomEditor';
 import { useSlate } from 'slate-react';
 import keyDownStrategies from '../../libs/slate/keyDownStrategies';
+import TableSelection from '../Table/components/TableSelection';
 
 interface ToolbarProps {
   editor: CustomEditor;
   onBoldClick?: () => void;
   onItalicClick?: () => void;
   onUnderlineClick?: () => void;
+  TableSelection?: () => void;
 }
 
 type ButtonClickHandler = (
@@ -29,6 +31,8 @@ const Toolbar: React.FC<ToolbarProps> = props => {
   const editor = useSlate();
 
   const kdStrategies = keyDownStrategies(editor);
+
+  const [isTableSelectionOpen, toggleTableSelection] = useState(false);
 
   return (
     <div className="toolbar">
@@ -60,13 +64,28 @@ const Toolbar: React.FC<ToolbarProps> = props => {
           strokeWidth={kdStrategies.getStrategy('meta+\\')?.isActive ? 4 : 2}
         />
       </button>
-      <button onClick={(): void => customEditor.sendKeyPress('meta+t')}>
+      <div style={{ position: 'relative' }}>
+        <button onClick={(): void => toggleTableSelection(true)}>
+          <GridIcon
+            color="#333"
+            size={24}
+            strokeWidth={kdStrategies.getStrategy('meta+t')?.isActive ? 4 : 2}
+          />
+        </button>
+        {isTableSelectionOpen && (
+          <TableSelection
+            editor={editor}
+            onSelection={(): void => toggleTableSelection(false)}
+          />
+        )}
+      </div>
+      {/* <button onClick={(): void => customEditor.sendKeyPress('meta+t')}>
         <GridIcon
           color="#333"
           size={24}
           strokeWidth={kdStrategies.getStrategy('meta+t')?.isActive ? 4 : 2}
         />
-      </button>
+      </button> */}
     </div>
   );
 };

@@ -9,7 +9,7 @@ export class TableElement implements KeyDownStrategy {
   constructor(editor: ReactEditor) {
     this._editor = editor;
 
-    this.strategyName = 'code';
+    this.strategyName = 'table';
   }
 
   public get isActive(): boolean {
@@ -20,14 +20,14 @@ export class TableElement implements KeyDownStrategy {
     const isActive = this.isTableActive();
     Transforms.setNodes(
       this._editor,
-      { type: isActive ? null : 'code' },
+      { type: isActive ? null : this.strategyName },
       { match: n => Editor.isBlock(this._editor, n) }
     );
   }
 
   private isTableActive(): boolean {
     const [match] = Editor.nodes(this._editor, {
-      match: n => n.type === 'code'
+      match: n => n.type === this.strategyName
     });
     return !!match;
   }
