@@ -38,12 +38,12 @@ const App: React.FC = () => {
           value={value}
           onChange={(v): void => setValue(v)}
         >
-          <Toolbar />
+          <Toolbar editor={customEditor} />
           <Editable
             className="editor"
             renderElement={renderElement}
             renderLeaf={renderLeaf}
-            onKeyDown={(event): void => customEditor.handleKeyDown(event)}
+            onKeyDown={customEditor.handleKeyDown}
           />
         </Slate>
       </div>
