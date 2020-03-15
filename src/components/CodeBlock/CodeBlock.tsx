@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { RenderElementProps } from "slate-react";
+import { RenderElementProps } from 'slate-react';
 
-import "./CodeBlock.scss";
+import './CodeBlock.scss';
 
 const CodeBlock: React.FC<RenderElementProps> = props => {
   return (

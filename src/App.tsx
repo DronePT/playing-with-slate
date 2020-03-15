@@ -47,6 +47,9 @@ const App: React.FC = () => {
           />
         </Slate>
       </div>
+      <div className="debug-container">
+        <pre>{JSON.stringify(value, null, 2)}</pre>
+      </div>
     </div>
   );
 };

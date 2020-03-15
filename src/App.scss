@@ -4,19 +4,22 @@
 
   height: 100%;
 
-  .editor-container {
+  .editor-container,
+  .debug-container {
     position: relative;
     display: flex;
 
-    margin: 5% auto;
-    width: 60%;
+    margin: 5% 1% auto;
+    width: 40%;
     min-height: 40%;
 
     background-color: #fff;
     border-radius: 10px;
 
     align-self: flex-start;
+  }
 
+  .editor-container {
     padding: 80px 16px 16px;
 
     overflow-x: hidden;
@@ -28,5 +31,9 @@
       flex: 1;
       align-self: stretch;
     }
+  }
+
+  .debug-container {
+    padding: 16px;
   }
 }
