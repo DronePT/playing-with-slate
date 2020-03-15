@@ -7,7 +7,7 @@ import { Node } from 'slate/dist/interfaces/node';
 
 import './App.scss';
 import Toolbar from './components/Toolbar';
-import customElementRenderer from './libs/slate/CustomEelementRenderer';
+import customElementRenderer from './libs/slate/CustomElementRenderer';
 import customLeafRenderer from './libs/slate/CustomLeafRenderer';
 import CustomEditor from './libs/slate/CustomEditor';
 
