@@ -9,6 +9,8 @@ import {
 import './Toolbar.scss';
 
 import CustomEditor from '../../libs/slate/CustomEditor';
+import { useSlate } from 'slate-react';
+import keyDownStrategies from '../../libs/slate/keyDownStrategies';
 
 interface ToolbarProps {
   editor: CustomEditor;
@@ -22,21 +24,40 @@ type ButtonClickHandler = (
 ) => void;
 
 const Toolbar: React.FC<ToolbarProps> = props => {
-  const { editor } = props;
+  const { editor: customEditor } = props;
+  const editor = useSlate();
+
+  const kdStrategies = keyDownStrategies(editor);
 
   return (
     <div className="toolbar">
-      <button onClick={(): void => editor.sendKeyPress('meta+b')}>
-        <BoldIcon color="#333" size={24} strokeWidth={4} />
+      <button onClick={(): void => customEditor.sendKeyPress('meta+b')}>
+        <BoldIcon
+          color="#333"
+          size={24}
+          strokeWidth={kdStrategies.getStrategy('meta+b')?.isActive ? 4 : 2}
+        />
       </button>
-      <button onClick={(): void => editor.sendKeyPress('meta+i')}>
-        <ItalicIcon color="#333" size={24} />
+      <button onClick={(): void => customEditor.sendKeyPress('meta+i')}>
+        <ItalicIcon
+          color="#333"
+          size={24}
+          strokeWidth={kdStrategies.getStrategy('meta+i')?.isActive ? 4 : 2}
+        />
       </button>
-      <button onClick={(): void => editor.sendKeyPress('meta+u')}>
-        <UnderlineIcon color="#333" size={24} />
+      <button onClick={(): void => customEditor.sendKeyPress('meta+u')}>
+        <UnderlineIcon
+          color="#333"
+          size={24}
+          strokeWidth={kdStrategies.getStrategy('meta+u')?.isActive ? 4 : 2}
+        />
       </button>
-      <button onClick={(): void => editor.sendKeyPress('meta+\\')}>
-        <CodeIcon color="#333" size={24} />
+      <button onClick={(): void => customEditor.sendKeyPress('meta+\\')}>
+        <CodeIcon
+          color="#333"
+          size={24}
+          strokeWidth={kdStrategies.getStrategy('meta+\\')?.isActive ? 4 : 2}
+        />
       </button>
     </div>
   );

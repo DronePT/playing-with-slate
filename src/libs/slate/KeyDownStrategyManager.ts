@@ -6,16 +6,22 @@ import { CodeBlockElement } from './Elements/CodeBlockElement';
 import { ItalicMarkToggler } from './Marks/ItalicMarkToggler';
 import { UnderlineMarkToggler } from './Marks/UnderlineMarkToggler';
 
+type KeyCombination = string;
+type ElementOrLeafName = string;
+
 export class KeyDownStrategyManager {
-  private stratagies: KeyDownStrategy[] = [];
+  private strategies: KeyDownStrategy[] = [];
   // eslint-disable-next-line no-undef
   private stratagiesMap: Map<string, KeyDownStrategy> = new Map();
   private keysMapping: Map<string, string>;
 
-  constructor(editor: ReactEditor, keysMapping: Map<string, string>) {
+  constructor(
+    editor: ReactEditor,
+    keysMapping: Map<KeyCombination, ElementOrLeafName>
+  ) {
     this.keysMapping = keysMapping;
 
-    this.stratagies = [
+    this.strategies = [
       new CodeBlockElement(editor),
       new BoldMarkToggler(editor),
       new ItalicMarkToggler(editor),
@@ -26,18 +32,18 @@ export class KeyDownStrategyManager {
   }
 
   private _buildStrategyMap(): void {
-    this.stratagies.forEach(strategy =>
+    this.strategies.forEach(strategy =>
       this.stratagiesMap.set(strategy.strategyName, strategy)
     );
   }
 
   addStrategy(strategy: KeyDownStrategy): void {
-    this.stratagies.push(strategy);
+    this.strategies.push(strategy);
 
     this.stratagiesMap.set(strategy.strategyName, strategy);
   }
 
-  getStrategy(keyName: string): KeyDownStrategy | undefined {
-    return this.stratagiesMap.get(this.keysMapping.get(keyName) || '');
+  getStrategy(keyCombination: string): KeyDownStrategy | undefined {
+    return this.stratagiesMap.get(this.keysMapping.get(keyCombination) || '');
   }
 }

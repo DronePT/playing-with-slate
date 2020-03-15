@@ -1,20 +1,12 @@
 import { ReactEditor } from 'slate-react';
 import { KeyDownStrategyManager } from './KeyDownStrategyManager';
+import keyDownStrategies from './keyDownStrategies';
 
 class CustomEditor {
   private keyDownStrategyManager: KeyDownStrategyManager;
 
   constructor(editor: ReactEditor) {
-    this.keyDownStrategyManager = new KeyDownStrategyManager(
-      editor,
-      // eslint-disable-next-line no-undef
-      new Map([
-        ['meta+\\', 'code'],
-        ['meta+b', 'bold'],
-        ['meta+i', 'italic'],
-        ['meta+u', 'underline']
-      ])
-    );
+    this.keyDownStrategyManager = keyDownStrategies(editor);
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
