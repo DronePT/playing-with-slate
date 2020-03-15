@@ -9,6 +9,7 @@ export default (editor: ReactEditor): KeyDownStrategyManager =>
       ['meta+\\', 'code'],
       ['meta+b', 'bold'],
       ['meta+i', 'italic'],
-      ['meta+u', 'underline']
+      ['meta+u', 'underline'],
+      ['meta+t', 'table']
     ])
   );

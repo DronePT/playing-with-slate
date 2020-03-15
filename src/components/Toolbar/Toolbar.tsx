@@ -3,7 +3,8 @@ import {
   Bold as BoldIcon,
   Italic as ItalicIcon,
   Underline as UnderlineIcon,
-  Code as CodeIcon
+  Code as CodeIcon,
+  Grid as GridIcon
 } from 'react-feather';
 
 import './Toolbar.scss';
@@ -57,6 +58,13 @@ const Toolbar: React.FC<ToolbarProps> = props => {
           color="#333"
           size={24}
           strokeWidth={kdStrategies.getStrategy('meta+\\')?.isActive ? 4 : 2}
+        />
+      </button>
+      <button onClick={(): void => customEditor.sendKeyPress('meta+t')}>
+        <GridIcon
+          color="#333"
+          size={24}
+          strokeWidth={kdStrategies.getStrategy('meta+t')?.isActive ? 4 : 2}
         />
       </button>
     </div>
