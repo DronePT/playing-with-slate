@@ -1,11 +1,11 @@
 import { ReactEditor } from 'slate-react';
 import { KeyDownStrategy } from './KeyDownStrategy';
 
-import { BoldMarkToggler } from './Marks/BoldMarkToggler';
+import { BoldMark } from './Marks/BoldMark';
 import { CodeBlockElement } from './Elements/CodeBlockElement';
 import { TableElement } from './Elements/TableElement';
-import { ItalicMarkToggler } from './Marks/ItalicMarkToggler';
-import { UnderlineMarkToggler } from './Marks/UnderlineMarkToggler';
+import { ItalicMark } from './Marks/ItalicMark';
+import { UnderlineMark } from './Marks/UnderlineMark';
 
 type KeyCombination = string;
 type ElementOrLeafName = string;
@@ -25,9 +25,9 @@ export class KeyDownStrategyManager {
     this.strategies = [
       new TableElement(editor),
       new CodeBlockElement(editor),
-      new BoldMarkToggler(editor),
-      new ItalicMarkToggler(editor),
-      new UnderlineMarkToggler(editor)
+      new BoldMark(editor),
+      new ItalicMark(editor),
+      new UnderlineMark(editor)
     ];
 
     this._buildStrategyMap();

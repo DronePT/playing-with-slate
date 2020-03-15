@@ -2,7 +2,7 @@ import { ReactEditor } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
 import { KeyDownStrategy } from '../KeyDownStrategy';
 
-export class ItalicMarkToggler extends KeyDownStrategy {
+export class ItalicMark extends KeyDownStrategy {
   constructor(editor: ReactEditor) {
     super('italic', editor);
   }

@@ -1,33 +1,34 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
 import { KeyDownStrategy } from '../KeyDownStrategy';
-export class UnderlineMarkToggler extends KeyDownStrategy {
+
+export class BoldMark extends KeyDownStrategy {
   constructor(editor: ReactEditor) {
-    super('underline', editor);
+    super('bold', editor);
   }
 
   public get isActive(): boolean {
-    return this.isUnderlineMarkActive();
+    return this.isBoldMarkActive();
   }
 
-  private toggleUnderlineMark(): void {
-    const isActive = this.isUnderlineMarkActive();
+  private toggleBoldMark(): void {
+    const isActive = this.isBoldMarkActive();
     Transforms.setNodes(
       this._editor,
-      { underline: isActive ? null : true },
+      { bold: isActive ? null : true },
       { match: n => Text.isText(n), split: true }
     );
   }
 
-  private isUnderlineMarkActive(): boolean {
+  private isBoldMarkActive(): boolean {
     const [match] = Editor.nodes(this._editor, {
-      match: n => n.underline === true,
+      match: n => n.bold === true,
       universal: true
     });
     return !!match;
   }
 
   toggle(): void {
-    this.toggleUnderlineMark();
+    this.toggleBoldMark();
   }
 }
