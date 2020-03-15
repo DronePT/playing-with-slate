@@ -1,13 +1,9 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Editor } from 'slate';
 import { KeyDownStrategy } from '../KeyDownStrategy';
-export class TableElement implements KeyDownStrategy {
-  private _editor: ReactEditor;
-
-  public strategyName: string;
-
+export class TableElement extends KeyDownStrategy {
   constructor(editor: ReactEditor) {
-    this._editor = editor;
+    super('table', editor);
 
     this.strategyName = 'table';
   }

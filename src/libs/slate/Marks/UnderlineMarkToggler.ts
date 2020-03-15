@@ -1,13 +1,9 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
 import { KeyDownStrategy } from '../KeyDownStrategy';
-export class UnderlineMarkToggler implements KeyDownStrategy {
-  private _editor: ReactEditor;
-  public strategyName: string;
-
+export class UnderlineMarkToggler extends KeyDownStrategy {
   constructor(editor: ReactEditor) {
-    this._editor = editor;
-    this.strategyName = 'underline';
+    super('underline', editor);
   }
 
   public get isActive(): boolean {
