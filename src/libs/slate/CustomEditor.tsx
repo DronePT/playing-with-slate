@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { ReactEditor, RenderElementProps, RenderLeafProps } from 'slate-react';
-import { KeyDownStrategyManager } from './KeyDownStrategyManager';
-import keyDownStrategies from './keyDownStrategies';
+import { ElementOrMarkStrategyManager } from './ElementOrMarkStrategyManager';
+import keyDownStrategies from './ElementOrMarkStrategies';
 
 // Temporary: Elements
 import CodeBlock from '../../components/CodeBlock';
@@ -14,7 +14,7 @@ import TableCell from '../../components/Table/components/TableCell';
 import Leaf from './Leaf';
 
 class CustomEditor {
-  private keyDownStrategyManager: KeyDownStrategyManager;
+  private keyDownStrategyManager: ElementOrMarkStrategyManager;
 
   constructor(editor: ReactEditor) {
     this.keyDownStrategyManager = keyDownStrategies(editor);

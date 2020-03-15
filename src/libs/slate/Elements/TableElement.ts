@@ -1,9 +1,9 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Editor } from 'slate';
-import { KeyDownStrategy } from '../KeyDownStrategy';
-export class TableElement extends KeyDownStrategy {
+import { ElementOrMarkStrategy } from '../ElementOrMarkStrategy';
+export class TableElement extends ElementOrMarkStrategy {
   constructor(editor: ReactEditor) {
-    super('table', editor);
+    super('table', 'meta+t', editor);
 
     this.strategyName = 'table';
   }

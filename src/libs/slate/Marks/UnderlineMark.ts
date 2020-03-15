@@ -1,10 +1,10 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
-import { KeyDownStrategy } from '../KeyDownStrategy';
+import { ElementOrMarkStrategy } from '../ElementOrMarkStrategy';
 
-export class UnderlineMark extends KeyDownStrategy {
+export class UnderlineMark extends ElementOrMarkStrategy {
   constructor(editor: ReactEditor) {
-    super('underline', editor);
+    super('underline', 'meta+u', editor);
   }
 
   public get isActive(): boolean {

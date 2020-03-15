@@ -11,7 +11,7 @@ import './Toolbar.scss';
 
 import CustomEditor from '../../libs/slate/CustomEditor';
 import { useSlate } from 'slate-react';
-import keyDownStrategies from '../../libs/slate/keyDownStrategies';
+import keyDownStrategies from '../../libs/slate/ElementOrMarkStrategies';
 import TableSelection from '../Table/components/TableSelection';
 
 interface ToolbarProps {

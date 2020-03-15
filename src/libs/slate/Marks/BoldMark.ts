@@ -1,10 +1,10 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
-import { KeyDownStrategy } from '../KeyDownStrategy';
+import { ElementOrMarkStrategy } from '../ElementOrMarkStrategy';
 
-export class BoldMark extends KeyDownStrategy {
+export class BoldMark extends ElementOrMarkStrategy {
   constructor(editor: ReactEditor) {
-    super('bold', editor);
+    super('bold', 'meta+b', editor);
   }
 
   public get isActive(): boolean {

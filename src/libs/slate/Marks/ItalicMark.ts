@@ -1,10 +1,10 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
-import { KeyDownStrategy } from '../KeyDownStrategy';
+import { ElementOrMarkStrategy } from '../ElementOrMarkStrategy';
 
-export class ItalicMark extends KeyDownStrategy {
+export class ItalicMark extends ElementOrMarkStrategy {
   constructor(editor: ReactEditor) {
-    super('italic', editor);
+    super('italic', 'meta+i', editor);
   }
 
   public get isActive(): boolean {

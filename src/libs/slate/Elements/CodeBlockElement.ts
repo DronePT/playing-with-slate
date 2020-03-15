@@ -1,9 +1,9 @@
 import { ReactEditor } from 'slate-react';
 import { Transforms, Editor } from 'slate';
-import { KeyDownStrategy } from '../KeyDownStrategy';
-export class CodeBlockElement extends KeyDownStrategy {
+import { ElementOrMarkStrategy } from '../ElementOrMarkStrategy';
+export class CodeBlockElement extends ElementOrMarkStrategy {
   constructor(editor: ReactEditor) {
-    super('code', editor);
+    super('code', 'meta+\\', editor);
   }
 
   public get isActive(): boolean {
