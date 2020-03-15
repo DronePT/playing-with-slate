@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { RenderLeafProps } from 'slate-react';
 import clsx from 'clsx';
 
@@ -20,12 +20,4 @@ const Leaf: React.FC<RenderLeafProps> = props => {
   );
 };
 
-type CustomLeafRender = (props: RenderLeafProps) => JSX.Element;
-
-const CustomLeafRenderer = (): CustomLeafRender => {
-  return useCallback(props => {
-    return <Leaf {...props} />;
-  }, []);
-};
-
-export default CustomLeafRenderer;
+export default Leaf;

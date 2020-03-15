@@ -7,8 +7,6 @@ import { Node } from 'slate/dist/interfaces/node';
 
 import './App.scss';
 import Toolbar from './components/Toolbar';
-import customElementRenderer from './libs/slate/CustomElementRenderer';
-import customLeafRenderer from './libs/slate/CustomLeafRenderer';
 import CustomEditor from './libs/slate/CustomEditor';
 
 const App: React.FC = () => {
@@ -27,9 +25,6 @@ const App: React.FC = () => {
     }
   ]);
 
-  const renderElement = customElementRenderer();
-  const renderLeaf = customLeafRenderer();
-
   return (
     <div className="app">
       <div className="editor-container">
@@ -41,8 +36,8 @@ const App: React.FC = () => {
           <Toolbar editor={customEditor} />
           <Editable
             className="editor"
-            renderElement={renderElement}
-            renderLeaf={renderLeaf}
+            renderElement={CustomEditor.elementRenderer()}
+            renderLeaf={CustomEditor.leafRenderer()}
             onKeyDown={customEditor.handleKeyDown}
           />
         </Slate>
