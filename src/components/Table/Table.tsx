@@ -5,8 +5,6 @@ import { RenderElementProps } from 'slate-react';
 import './Table.scss';
 
 const Table: React.FC<RenderElementProps> = props => {
-  console.log(props);
-
   return (
     <table className="Table">
       <tbody {...props.attributes}>{props.children}</tbody>

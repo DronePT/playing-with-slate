@@ -1,5 +1,16 @@
 .Table {
   border: solid 1px #ccc;
   display: inline-block;
-  padding: 16px;
+
+  padding: 8px;
+
+  .TableRow {
+    padding: 8px;
+    border: solid 1px red;
+
+    .TableCell {
+      padding: 8px;
+      border: solid 1px green;
+    }
+  }
 }

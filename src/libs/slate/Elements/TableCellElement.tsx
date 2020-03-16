@@ -1,11 +1,13 @@
-import { ReactEditor } from 'slate-react';
+import React from 'react';
+import { ReactEditor, RenderElementProps } from 'slate-react';
 import { Transforms, Editor } from 'slate';
-import { ElementOrMarkStrategy } from '../ElementOrMarkStrategy';
-export class TableElement extends ElementOrMarkStrategy {
-  constructor(editor: ReactEditor) {
-    super('table', 'meta+t', editor);
 
-    this.strategyName = 'table';
+import { ElementOrMarkStrategy } from '../ElementOrMarkStrategy';
+import TableCell from '../../../components/Table/components/TableCell';
+
+export class TableCellElement extends ElementOrMarkStrategy {
+  constructor(editor: ReactEditor) {
+    super('table-cell', 'meta+t+c', editor);
   }
 
   public get isActive(): boolean {
@@ -30,5 +32,9 @@ export class TableElement extends ElementOrMarkStrategy {
 
   toggle(): void {
     this.toggleTable();
+  }
+
+  render(props: RenderElementProps): JSX.Element {
+    return <TableCell {...props} />;
   }
 }

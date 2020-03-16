@@ -1,23 +1,15 @@
 import React, { useCallback } from 'react';
 import { ReactEditor, RenderElementProps, RenderLeafProps } from 'slate-react';
 import { ElementOrMarkStrategyManager } from './ElementOrMarkStrategyManager';
-import keyDownStrategies from './ElementOrMarkStrategies';
+import elementOrMarkStrategies from './ElementOrMarkStrategies';
 
-// Temporary: Elements
-import CodeBlock from '../../components/CodeBlock';
-import Paragraph from '../../components/Paragraph';
-import Table from '../../components/Table';
-import TableRow from '../../components/Table/components/TableRow';
-import TableCell from '../../components/Table/components/TableCell';
-
-// Temporary: Leafs
 import Leaf from './Leaf';
 
 class CustomEditor {
   private keyDownStrategyManager: ElementOrMarkStrategyManager;
 
   constructor(editor: ReactEditor) {
-    this.keyDownStrategyManager = keyDownStrategies(editor);
+    this.keyDownStrategyManager = elementOrMarkStrategies(editor);
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
@@ -42,21 +34,23 @@ class CustomEditor {
     this.sendKeyPress(keyName.join('+'));
   }
 
-  static elementRenderer(): (props: RenderElementProps) => JSX.Element {
-    return useCallback((props: RenderElementProps) => {
-      switch (props.element.type) {
-        case 'table':
-          return <Table {...props} />;
-        case 'table-row':
-          return <TableRow {...props} />;
-        case 'table-cell':
-          return <TableCell {...props} />;
-        case 'code':
-          return <CodeBlock {...props} />;
-        default:
-          return <Paragraph {...props} />;
-      }
-    }, []);
+  static elementRenderer(
+    editor: ReactEditor
+  ): (props: RenderElementProps) => JSX.Element {
+    const elementsOrMarks = elementOrMarkStrategies(editor);
+
+    return useCallback(
+      (props: RenderElementProps) => {
+        const elementOrMark = elementsOrMarks.getStrategy(props.element.type);
+
+        if (!elementOrMark || !elementOrMark.render) {
+          return <div {...props} />;
+        }
+
+        return elementOrMark.render(props);
+      },
+      [elementsOrMarks]
+    );
   }
 
   static leafRenderer(): (p: RenderLeafProps) => JSX.Element {

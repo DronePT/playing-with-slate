@@ -1,6 +1,7 @@
-import { ReactEditor } from 'slate-react';
+import { ReactEditor, RenderLeafProps } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
 import { ElementOrMarkStrategy } from '../ElementOrMarkStrategy';
+import React from 'react';
 
 export class ItalicMark extends ElementOrMarkStrategy {
   constructor(editor: ReactEditor) {
@@ -31,5 +32,9 @@ export class ItalicMark extends ElementOrMarkStrategy {
 
   toggle(): void {
     this.toggleItalicMark();
+  }
+
+  render(props: RenderLeafProps): JSX.Element {
+    return <div {...props} />;
   }
 }

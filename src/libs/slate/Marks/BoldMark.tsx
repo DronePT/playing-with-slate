@@ -1,4 +1,5 @@
-import { ReactEditor } from 'slate-react';
+import React from 'react';
+import { ReactEditor, RenderLeafProps } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
 import { ElementOrMarkStrategy } from '../ElementOrMarkStrategy';
 
@@ -30,5 +31,9 @@ export class BoldMark extends ElementOrMarkStrategy {
 
   toggle(): void {
     this.toggleBoldMark();
+  }
+
+  render(props: RenderLeafProps): JSX.Element {
+    return <div {...props} />;
   }
 }

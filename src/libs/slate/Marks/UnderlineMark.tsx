@@ -1,6 +1,7 @@
-import { ReactEditor } from 'slate-react';
+import { ReactEditor, RenderLeafProps } from 'slate-react';
 import { Transforms, Text, Editor } from 'slate';
 import { ElementOrMarkStrategy } from '../ElementOrMarkStrategy';
+import React from 'react';
 
 export class UnderlineMark extends ElementOrMarkStrategy {
   constructor(editor: ReactEditor) {
@@ -30,5 +31,9 @@ export class UnderlineMark extends ElementOrMarkStrategy {
 
   toggle(): void {
     this.toggleUnderlineMark();
+  }
+
+  render(props: RenderLeafProps): JSX.Element {
+    return <div {...props} />;
   }
 }

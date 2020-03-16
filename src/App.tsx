@@ -36,7 +36,7 @@ const App: React.FC = () => {
           <Toolbar editor={customEditor} />
           <Editable
             className="editor"
-            renderElement={CustomEditor.elementRenderer()}
+            renderElement={CustomEditor.elementRenderer(editor)}
             renderLeaf={CustomEditor.leafRenderer()}
             onKeyDown={customEditor.handleKeyDown}
           />
