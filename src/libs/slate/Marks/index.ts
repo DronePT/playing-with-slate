@@ -1,3 +1,3 @@
-export * from './BoldMark';
-export * from './ItalicMark';
-export * from './UnderlineMark';
+export { BoldMark } from './BoldMark';
+export { ItalicMark } from './ItalicMark';
+export { UnderlineMark } from './UnderlineMark';

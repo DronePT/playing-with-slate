@@ -1,6 +1,6 @@
-export * from './TableElement';
-export * from './TableRowElement';
-export * from './CodeBlockElement';
-export * from './ParagraphElement';
-export * from './TableCellElement';
-export * from './CodeHighlightElement';
+export { TableElement } from './TableElement';
+export { TableRowElement } from './TableRowElement';
+export { CodeBlockElement } from './CodeBlockElement';
+export { ParagraphElement } from './ParagraphElement';
+export { TableCellElement } from './TableCellElement';
+export { CodeHighlightElement } from './CodeHighlightElement';
