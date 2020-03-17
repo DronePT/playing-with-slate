@@ -13,8 +13,19 @@ import { TableRowElement } from './Elements/TableRowElement';
 import { TableCellElement } from './Elements/TableCellElement';
 import { ParagraphElement } from './Elements/ParagraphElement';
 
+import {
+  TableElement,
+  TableRowElement,
+  CodeBlockElement,
+  ParagraphElement,
+  TableCellElement,
+  CodeHighlightElement
+} from './Elements';
+
 export default (editor: ReactEditor): ElementOrMarkStrategyManager => {
   const strategies = [
+    new BoldMark(editor),
+    new ItalicMark(editor),
     new TableElement(editor),
     new TableHeaderElement(editor),
     new TableHeaderCellElement(editor),
@@ -23,9 +34,7 @@ export default (editor: ReactEditor): ElementOrMarkStrategyManager => {
     new TableCellElement(editor),
     new CodeBlockElement(editor),
     new ParagraphElement(editor),
-    new BoldMark(editor),
-    new ItalicMark(editor),
-    new UnderlineMark(editor)
+    new CodeHighlightElement(editor)
   ];
 
   return new ElementOrMarkStrategyManager(strategies);
