@@ -6,7 +6,7 @@ import { RenderElementProps } from 'slate-react';
 
 const TableCell: React.FC<RenderElementProps> = props => {
   return (
-    <td {...props.attributes} className="TableCell">
+    <td {...props.attributes} className="table-cell">
       {props.children}
     </td>
   );

@@ -1,16 +1,22 @@
-.Table {
-  border: solid 1px #ccc;
+.table {
   display: inline-block;
+  padding: 0;
+  border: solid 1px #ccc;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border-spacing: 0px;
 
-  padding: 8px;
+  .table-row {
+    padding: 5px;
+    border: none;
 
-  .TableRow {
-    padding: 8px;
-    border: solid 1px red;
+    &:nth-child(even) {
+      background-color: #eee;
+    }
 
-    .TableCell {
-      padding: 8px;
-      border: solid 1px green;
+    .table-cell {
+      padding: 15px 10px;
+      border: none;
     }
   }
 }

@@ -6,8 +6,8 @@ import './Table.scss';
 
 const Table: React.FC<RenderElementProps> = props => {
   return (
-    <table className="Table">
-      <tbody {...props.attributes}>{props.children}</tbody>
+    <table className="table" {...props.attributes}>
+      {props.children}
     </table>
   );
 };
