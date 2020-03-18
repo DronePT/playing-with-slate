@@ -13,6 +13,7 @@ import CustomEditor from '../../libs/slate/CustomEditor';
 import { useSlate } from 'slate-react';
 import keyDownStrategies from '../../libs/slate/ElementOrMarkStrategies';
 import TableSelection from '../Table/components/TableSelection';
+import SubToolbar from './components/SubToolbar';
 
 interface ToolbarProps {
   editor: CustomEditor;
@@ -36,56 +37,54 @@ const Toolbar: React.FC<ToolbarProps> = props => {
 
   return (
     <div className="toolbar">
-      <button onClick={(): void => customEditor.sendKeyPress('meta+b')}>
-        <BoldIcon
-          color="#333"
-          size={24}
-          strokeWidth={kdStrategies.getStrategy('meta+b')?.isActive ? 4 : 2}
-        />
-      </button>
-      <button onClick={(): void => customEditor.sendKeyPress('meta+i')}>
-        <ItalicIcon
-          color="#333"
-          size={24}
-          strokeWidth={kdStrategies.getStrategy('meta+i')?.isActive ? 4 : 2}
-        />
-      </button>
-      <button onClick={(): void => customEditor.sendKeyPress('meta+u')}>
-        <UnderlineIcon
-          color="#333"
-          size={24}
-          strokeWidth={kdStrategies.getStrategy('meta+u')?.isActive ? 4 : 2}
-        />
-      </button>
-      <button onClick={(): void => customEditor.sendKeyPress('meta+\\')}>
-        <CodeIcon
-          color="#333"
-          size={24}
-          strokeWidth={kdStrategies.getStrategy('meta+\\')?.isActive ? 4 : 2}
-        />
-      </button>
-      <div style={{ position: 'relative' }}>
-        <button onClick={(): void => toggleTableSelection(true)}>
-          <GridIcon
+      <div className="toolbar__content">
+        <button onClick={(): void => customEditor.sendKeyPress('meta+b')}>
+          <BoldIcon
             color="#333"
             size={24}
-            strokeWidth={kdStrategies.getStrategy('meta+t')?.isActive ? 4 : 2}
+            strokeWidth={kdStrategies.getStrategy('meta+b')?.isActive ? 4 : 2}
           />
         </button>
-        {isTableSelectionOpen && (
-          <TableSelection
-            editor={editor}
-            onSelection={(): void => toggleTableSelection(false)}
+        <button onClick={(): void => customEditor.sendKeyPress('meta+i')}>
+          <ItalicIcon
+            color="#333"
+            size={24}
+            strokeWidth={kdStrategies.getStrategy('meta+i')?.isActive ? 4 : 2}
           />
-        )}
+        </button>
+        <button onClick={(): void => customEditor.sendKeyPress('meta+u')}>
+          <UnderlineIcon
+            color="#333"
+            size={24}
+            strokeWidth={kdStrategies.getStrategy('meta+u')?.isActive ? 4 : 2}
+          />
+        </button>
+        <button onClick={(): void => customEditor.sendKeyPress('meta+\\')}>
+          <CodeIcon
+            color="#333"
+            size={24}
+            strokeWidth={kdStrategies.getStrategy('meta+\\')?.isActive ? 4 : 2}
+          />
+        </button>
+        <div style={{ position: 'relative' }}>
+          <button onClick={(): void => toggleTableSelection(true)}>
+            <GridIcon
+              color="#333"
+              size={24}
+              strokeWidth={kdStrategies.getStrategy('meta+t')?.isActive ? 4 : 2}
+            />
+          </button>
+          {isTableSelectionOpen && (
+            <TableSelection
+              editor={editor}
+              onSelection={(): void => toggleTableSelection(false)}
+            />
+          )}
+        </div>
       </div>
-      {/* <button onClick={(): void => customEditor.sendKeyPress('meta+t')}>
-        <GridIcon
-          color="#333"
-          size={24}
-          strokeWidth={kdStrategies.getStrategy('meta+t')?.isActive ? 4 : 2}
-        />
-      </button> */}
+      {kdStrategies.getStrategy('meta+t')?.isActive && (
+        <SubToolbar editor={customEditor} />
+      )}
     </div>
   );
 };
