@@ -6,4 +6,16 @@
 
   background: #f1f2f3;
   border-top: 1px solid gainsboro;
+  
+  .subtoolbar__table__columns {
+    display: flex;
+    border-right: 1px solid black;
+    margin: 5px 0;
+  }
+
+  .subtoolbar__table__rows {
+    display: flex;
+    border-right: 1px solid black;
+    margin: 5px 0;
+  }
 }
