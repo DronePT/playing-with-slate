@@ -8,6 +8,7 @@ import { UnderlineMark } from './Marks/UnderlineMark';
 import { TableHeaderElement } from './Elements/TableHeaderElement';
 import { TableHeaderCellElement } from './Elements/TableHeaderCellElement';
 import { TableBodyElement } from './Elements/TableBodyElement';
+import { TableRemoveRowElement } from './Elements/TableRemoveRow';
 
 import {
   TableElement,
@@ -31,7 +32,8 @@ export default (editor: ReactEditor): ElementOrMarkStrategyManager => {
     new ParagraphElement(editor),
     new TableHeaderElement(editor),
     new CodeHighlightElement(editor),
-    new TableHeaderCellElement(editor)
+    new TableHeaderCellElement(editor),
+    new TableRemoveRowElement(editor)
   ];
 
   return new ElementOrMarkStrategyManager(strategies);
