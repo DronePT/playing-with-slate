@@ -31,6 +31,103 @@ const App: React.FC = () => {
     {
       // type: 'paragraph',
       children: [{ text: 'A line of text in a paragraph.' }]
+    },
+    {
+      type: 'table',
+      children: [
+        {
+          type: 'table-body',
+          children: [
+            {
+              type: 'table-row',
+              children: [
+                {
+                  type: 'table-cell',
+                  children: [
+                    {
+                      text: 'cell 0 - 0'
+                    }
+                  ]
+                },
+                {
+                  type: 'table-cell',
+                  children: [
+                    {
+                      text: 'cell 0 - 1'
+                    }
+                  ]
+                },
+                {
+                  type: 'table-cell',
+                  children: [
+                    {
+                      text: 'cell 0 - 2'
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              type: 'table-row',
+              children: [
+                {
+                  type: 'table-cell',
+                  children: [
+                    {
+                      text: 'cell 1 - 0'
+                    }
+                  ]
+                },
+                {
+                  type: 'table-cell',
+                  children: [
+                    {
+                      text: 'cell 1 - 1'
+                    }
+                  ]
+                },
+                {
+                  type: 'table-cell',
+                  children: [
+                    {
+                      text: 'cell 1 - 2'
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              type: 'table-row',
+              children: [
+                {
+                  type: 'table-cell',
+                  children: [
+                    {
+                      text: 'cell 2 - 0'
+                    }
+                  ]
+                },
+                {
+                  type: 'table-cell',
+                  children: [
+                    {
+                      text: 'cell 2 - 1'
+                    }
+                  ]
+                },
+                {
+                  type: 'table-cell',
+                  children: [
+                    {
+                      text: 'cell 2 - 2'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]);
 

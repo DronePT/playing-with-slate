@@ -4,14 +4,24 @@ import { ElementOrMarkStrategyManager } from './ElementOrMarkStrategyManager';
 import elementOrMarkStrategies from './ElementOrMarkStrategies';
 
 import Leaf from './Leaf';
-
+import Commands from './Commands';
 class CustomEditor {
+  private _editor: ReactEditor;
   private keyDownStrategyManager: ElementOrMarkStrategyManager;
+  private commands: Commands;
 
   constructor(editor: ReactEditor) {
+    this._editor = editor;
+
+    this.commands = new Commands(editor);
+
     this.keyDownStrategyManager = elementOrMarkStrategies(editor);
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
+  sendCommand(command: string): void {
+    this.commands.getCommand(command).execute();
   }
 
   sendKeyPress(keyCombination: string): void {

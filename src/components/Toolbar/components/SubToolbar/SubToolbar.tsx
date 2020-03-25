@@ -29,7 +29,9 @@ const SubToolbar: React.FC<SubToolbarProps> = props => {
         <button onClick={(): void => customEditor.sendKeyPress('meta+t+c+r')}>
           <ArrowRightIcon color="#333" size={24} />
         </button>
-        <button onClick={(): void => customEditor.sendKeyPress('meta+t+c+del')}>
+        <button
+          onClick={(): void => customEditor.sendCommand('table-remove-row')}
+        >
           <DeleteIcon color="#333" size={24} />
         </button>
       </div>
@@ -40,7 +42,9 @@ const SubToolbar: React.FC<SubToolbarProps> = props => {
         <button onClick={(): void => customEditor.sendKeyPress('meta+t+r+d')}>
           <ArrowDownIcon color="#333" size={24} />
         </button>
-        <button onClick={(): void => customEditor.sendKeyPress('meta+t+r+del')}>
+        <button
+          onClick={(): void => customEditor.sendCommand('table-remove-column')}
+        >
           <DeleteIcon color="#333" size={24} />
         </button>
       </div>

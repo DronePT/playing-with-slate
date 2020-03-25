@@ -22,7 +22,6 @@ export class TableRemoveRowElement extends ElementOrMarkStrategy {
       { match: n => Editor.isBlock(this._editor, n) }
     );
   }
-
   private isTableActive(): boolean {
     const [match] = Editor.nodes(this._editor, {
       match: n => n.type === this.strategyName
