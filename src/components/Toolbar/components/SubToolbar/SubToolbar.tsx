@@ -48,7 +48,7 @@ const SubToolbar: React.FC<SubToolbarProps> = props => {
           <DeleteIcon color="#333" size={24} />
         </button>
       </div>
-      <button onClick={(): void => customEditor.sendKeyPress('meta+t+del')}>
+      <button onClick={(): void => customEditor.sendCommand('table-remove')}>
         <TrashIcon color="#333" size={24} />
       </button>
     </div>

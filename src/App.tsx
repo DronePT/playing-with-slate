@@ -36,6 +36,40 @@ const App: React.FC = () => {
       type: 'table',
       children: [
         {
+          type: 'table-header',
+          children: [
+            {
+              type: 'table-row',
+              children: [
+                {
+                  type: 'table-header-cell',
+                  children: [
+                    {
+                      text: 'cell 0 - 0'
+                    }
+                  ]
+                },
+                {
+                  type: 'table-header-cell',
+                  children: [
+                    {
+                      text: 'cell 0 - 1'
+                    }
+                  ]
+                },
+                {
+                  type: 'table-header-cell',
+                  children: [
+                    {
+                      text: 'cell 0 - 2'
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
           type: 'table-body',
           children: [
             {
@@ -74,7 +108,7 @@ const App: React.FC = () => {
                   type: 'table-cell',
                   children: [
                     {
-                      text: 'cell 1 - 0'
+                      text: 'cell 0 - 0'
                     }
                   ]
                 },
@@ -82,7 +116,7 @@ const App: React.FC = () => {
                   type: 'table-cell',
                   children: [
                     {
-                      text: 'cell 1 - 1'
+                      text: 'cell 0 - 1'
                     }
                   ]
                 },
@@ -90,36 +124,7 @@ const App: React.FC = () => {
                   type: 'table-cell',
                   children: [
                     {
-                      text: 'cell 1 - 2'
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              type: 'table-row',
-              children: [
-                {
-                  type: 'table-cell',
-                  children: [
-                    {
-                      text: 'cell 2 - 0'
-                    }
-                  ]
-                },
-                {
-                  type: 'table-cell',
-                  children: [
-                    {
-                      text: 'cell 2 - 1'
-                    }
-                  ]
-                },
-                {
-                  type: 'table-cell',
-                  children: [
-                    {
-                      text: 'cell 2 - 2'
+                      text: 'cell 0 - 2'
                     }
                   ]
                 }
