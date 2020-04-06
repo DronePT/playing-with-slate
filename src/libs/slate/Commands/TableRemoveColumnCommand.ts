@@ -4,7 +4,8 @@ import { Transforms, Path } from 'slate';
 import {
   getTableCellPath,
   getTablePath,
-  getTableChildren
+  getAllTableRowsPaths,
+  doesTableOnlyHaveOneColumnLeft
 } from '../helpers/table';
 
 export class TableRemoveColumnCommand implements CommandStrategy {
@@ -32,27 +33,19 @@ export class TableRemoveColumnCommand implements CommandStrategy {
       const tablePath = getTablePath(_editor, path);
 
       if (tablePath) {
-        // this gives us the table body and table header (if it exists)
-        const tableChildren = getTableChildren(_editor, tablePath);
-
-        for (let i = 0; i < tableChildren.length; i++) {
-          // here we are checking tbody and theader, so we know
-          // if we have to delete from header as well
-
-          for (let r = 0; r < tableChildren[i].children.length; r++) {
-            // here we will run through each row and delete
-            // the column (cell) index that we are clicking on
-            // by using the following formula:
-            // [table, body/header, row, cell];
-
-            Transforms.removeNodes(this._editor, {
-              at: [...tablePath, i, r, deleteColumnCellIndex] as Path
-            });
-          }
+        if (doesTableOnlyHaveOneColumnLeft(_editor, tablePath)) {
+          return Transforms.removeNodes(_editor, {
+            at: tablePath as Path
+          });
         }
 
-        // just need to check if table has any cells, if not we delete it
-        // make helper function to check that
+        const tableRowsPaths = getAllTableRowsPaths(_editor, tablePath);
+
+        tableRowsPaths.forEach(rowPath => {
+          Transforms.removeNodes(_editor, {
+            at: [...rowPath, deleteColumnCellIndex] as Path
+          });
+        });
       }
     }
 

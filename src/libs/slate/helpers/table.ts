@@ -33,6 +33,15 @@ function getPath(
   return null;
 }
 
+function iterate(
+  editor: Editor,
+  path: Path,
+  search: Array<string>,
+  callback: void
+): void {
+  // fazer função para iterar
+}
+
 export const getTableCellPath = function(
   editor: Editor,
   path: Path
@@ -49,6 +58,52 @@ export const getTableChildren = function(
   path: Path
 ): Array<Node> {
   return Node.get(editor, path).children;
+};
+
+export const doesTableOnlyHaveOneColumnLeft = function(
+  editor: Editor,
+  path: Path
+): boolean {
+  const search = ['table-row'];
+  const levels = Node.descendants(editor, { from: path });
+  const levelsInterator = levels[Symbol.iterator]();
+
+  while (true) {
+    const result = levelsInterator.next();
+    const value = result.value;
+
+    // value is always null when result.done is true since it hits a leaf
+    if (result.done) break;
+
+    if (search.indexOf(value[0].type) > -1) {
+      return value[0].children.length === 1;
+    }
+  }
+
+  return false;
+};
+
+export const getAllTableRowsPaths = function(
+  editor: Editor,
+  path: Path
+): Array<Path> {
+  const toReturn: Array<Path> = [];
+
+  const search = ['table-row'];
+  const levels = Node.descendants(editor, { from: path });
+  const levelsInterator = levels[Symbol.iterator]();
+
+  while (true) {
+    const result = levelsInterator.next();
+    const value = result.value;
+
+    // value is always null when result.done is true since it hits a leaf
+    if (result.done) break;
+
+    if (search.indexOf(value[0].type) > -1) toReturn.push(value[1]);
+  }
+
+  return toReturn;
 };
 
 export const getCurrentPath = function(editor: Editor, path: Path): Path {
